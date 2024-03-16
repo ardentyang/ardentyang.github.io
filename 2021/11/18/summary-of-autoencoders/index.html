@@ -154,6 +154,11 @@
 <h2 id="模型组成"><a href="#模型组成" class="headerlink" title="模型组成"></a>模型组成</h2><!-- AE由编码器和解码器两部分组成。编码器对输入进行编码，得到对输入的潜在特征表示；解码器对其进行解码，得到对输入的重建。
 对于一组维度为$D$的样本$\pmb{x}^{(i)} \in \mathbb{R}^D$, $1 \leqslant i \leqslant N$输入，编码器的运算可表示为 -->
 <p>AE由编码器和解码器两部分组成。编码器对输入进行编码，得到对输入的潜在特征表示；解码器对其进行解码，得到对输入的重建。<br>对于一组维度为$D$的样本$\pmb{x}^{(i)} \in \mathbb{R}^D$, $1 \leqslant i \leqslant N$输入，编码器的运算可表示为</p>
+<div>
+$$
+\pmb{z} = q_\theta(\pmb{x})
+$$
+</div>
 <div>$\pmb{z} = q_\theta(\pmb{x})$</div>
 <div>$\hat{\pmb{x}} = p_\phi(\pmb{z})$</div>
 
