@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        C Primer Plus 阅读笔记 - Ch2 - Ardent Yang&#39;s blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不积跬步，无以至千里 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Ardent Yang</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E4%B8%AAC%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">三个C源代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A4%BA%E4%BE%8B%EF%BC%9A%E9%80%90%E8%A1%8C%E5%88%86%E6%9E%90"><span class="toc-text">第一个示例：逐行分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%B8%80%E4%BA%9B%E6%96%B0%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">第二个示例：一些新的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-text">第三个示例：使用多个函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%B0%8F%E7%BB%93"><span class="toc-text">源代码结构小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8F%AF%E8%AF%BB%E6%80%A7"><span class="toc-text">提高源代码的可读性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="toc-text">调试程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF"><span class="toc-text">语法错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E9%94%99%E8%AF%AF"><span class="toc-text">语义错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8B%BF%E9%9A%8F%E4%BE%BF%E4%BD%BF%E7%94%A8%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E4%BF%9D%E7%95%99%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-text">勿随便使用关键字与保留标识符</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 不积跬步，无以至千里 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        C Primer Plus 阅读笔记 - Ch2
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-22 15:31:59</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="三个C源代码示例"><a href="#三个C源代码示例" class="headerlink" title="三个C源代码示例"></a>三个C源代码示例</h2><h3 id="第一个示例：逐行分析"><a href="#第一个示例：逐行分析" class="headerlink" title="第一个示例：逐行分析"></a>第一个示例：逐行分析</h3><!-- ```c{.line-numbers} -->
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    num = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I am a simple &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;computer.\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;My favorite number is %d because it is first.\n&quot;</span>, num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第1行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#include</code></td>
+<td>一条C预处理指令（preprocessor directive）</td>
+</tr>
+<tr>
+<td><code>stdio.h</code></td>
+<td>标准输入/输出头文件，包含了输入和输出函数，为键盘输入和屏幕输出提供支持</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>预处理（preprocessing）是编译器在编译源代码前的准备工作，<code>#include &lt;stdio.h&gt;</code>的作用是把<code>stdio.h</code>文件中的所有内容都输入该行所在的位置</p>
+<ol>
+<li>第2行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> <span class="comment">/* 一个简单的C程序 */</span></span><br></pre></td></tr></table></figure>
+（1）<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main()</code></td>
+<td>函数为<code>main()</code>，函数名为<code>main</code>，圆括号用于识别这是个函数</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>该函数的返回类型，整数</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td>该函数不带任何参数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>C 程序一定从<code>main()</code>函数开始执行。C 标准要求，<code>main()</code>函数返回一个整数。</p>
+<p>（2）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一个简单的C程序 */</span></span><br></pre></td></tr></table></figure><br>这是注释，注释是为了提高程序的可读性，编译器会忽略它们。有效的注释形式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 这是一条c注释 */</span></span><br></pre></td></tr></table></figure><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 这也是一条注释，</span></span><br><span class="line"><span class="comment">    被分成两行。 */</span></span><br></pre></td></tr></table></figure><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    也可以这样写</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><br>C99标准新增的注释风格：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这种注释只能写一行</span></span><br></pre></td></tr></table></figure><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> rigue; <span class="comment">// 这种注释也可置于此处</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>第3行与第12行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="comment">/* 函数体的开始 */</span></span><br><span class="line">&#125; <span class="comment">/* 函数体的结束 */</span></span><br></pre></td></tr></table></figure>
+<p>使用花括号标记函数体的开始和结束。除此以外，花括号可以将多条语句合并为一个块。</p>
+</li>
+<li><p>第4行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num;</span><br></pre></td></tr></table></figure>
+<p>这是一行对变量（variable）的声明（declaration）<br>|组分|含义|<br>|-|-|<br>|<code>num</code>|标识符（identifier），表示变量名|<br>|<code>int</code>|关键字（keyword），表示变量的数据类型为整数|<br>|<code>;</code>|声明的一部分|</p>
+</li>
+</ol>
+<p>（What）声明变量做了两件事情：</p>
+<ul>
+<li>命名</li>
+<li>指定数据类型</li>
+</ul>
+<p>（Why）在首次使用变量之前一定要先声明。</p>
+<ul>
+<li>不声明无法通过编译</li>
+<li>指定变量的数据类型，编译器才能在内存中为变量分配存储空间，计算机才能正确地存储、读取和解释数据</li>
+<li>有助于进行计划；变量放在一起，方便查找；便于发现程序中的变量名错误</li>
+</ul>
+<p>（How）</p>
+<ul>
+<li>命名：<ul>
+<li>可以使用小写字母、大写字母、数字和下划线，第1个字符必须是字母或下划线</li>
+<li>区分大小写</li>
+<li>要使用有意义的变量名，如果变量名无法清楚表达自身用途可在注释中说明</li>
+<li>名称长度有限制</li>
+</ul>
+</li>
+<li>数据类型：将在后续章节中详细叙述</li>
+</ul>
+<ol>
+<li>第5行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>赋值运算符</td>
+</tr>
+<tr>
+<td><code>num = 1</code></td>
+<td>赋值表达式</td>
+</tr>
+<tr>
+<td><code>num = 1;</code></td>
+<td>赋值表达式语句</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>整个赋值表达式语句是把值 1 赋给名为<code>num</code>的变量。由于之前声明时，编译器在内存中为变量<code>num</code>预留了空间，因此执行这条语句时，就可以把值存储在之前预留的位置。</p>
+<ol>
+<li>第7-9行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;I am a simple &quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;computer.\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;My favorite number is %d because it is first.\n&quot;</span>, num);</span><br></pre></td></tr></table></figure>
+这三行都调用了C标准库函数<code>printf()</code>，在屏幕上打印内容。当程序运行至其中的某一行，控制权会转给<code>printf()</code>函数，函数执行结束后，控制权返回至主调函数（calling function），在这里是<code>main()</code>。</li>
+</ol>
+<ul>
+<li>圆括号中的内容被称为参数</li>
+<li>第8行和第9行中的<code>\n</code>是换行符（newline character），让计算机另起一行</li>
+<li>第9行把<code>num</code>的值内嵌在双引号括起来的内容中一并打印，<code>%d</code>表示<code>num</code>值输出的位置和形式（十进制整数）。</li>
+</ul>
+<ol>
+<li>第11行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>return</code></td>
+<td>关键字</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>待返回的值</td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td>语句的结尾</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>return</code>语句，以此结束<code>main</code>函数。</p>
+<h3 id="第二个示例：一些新的内容"><a href="#第二个示例：一些新的内容" class="headerlink" title="第二个示例：一些新的内容"></a>第二个示例：一些新的内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// ```c</span><br><span class="line">// fathm_ft.c -- 把2英寻转换为英尺</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int feet, fathoms;</span><br><span class="line"></span><br><span class="line">    fathoms = 2;</span><br><span class="line">    feet = 6 * fathoms;</span><br><span class="line">    printf(&quot;There are %d feet in %d fathoms!\n&quot;, feet, fathoms);</span><br><span class="line">    printf(&quot;Yes, I said %d feet!\n&quot;, 6 * fathoms);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>程序说明：可以在源代码的开头通过注释说明文件名和程序的目的</li>
+<li>同类型变量的声明：一条或多条声明<br>第5行等价于：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> feet;</span><br><span class="line"><span class="type">int</span> fathoms;</span><br></pre></td></tr></table></figure></li>
+<li><code>*</code>是乘法运算符<br>第8行的含义是：查找变量<code>fathoms</code>的值，用6乘以该值，并把计算结果赋给变量<code>feet</code></li>
+<li>可以调用<code>printf</code>函数一次性打印多个值，待打印的值不一定是变量</li>
+</ul>
+<h3 id="第三个示例：使用多个函数"><a href="#第三个示例：使用多个函数" class="headerlink" title="第三个示例：使用多个函数"></a>第三个示例：使用多个函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// ```c</span><br><span class="line">/* two_func.c -- 一个文件中包含两个函数 */</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void butler(void); /* 函数原型 */</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;I will summon the butler function.\n&quot;);</span><br><span class="line">    butler();</span><br><span class="line">    printf(&quot;Yes. Bring me some tea and writeable DVDs.\n&quot;);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">void butler(void) /* 函数定义 */</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;You rang, sir?\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个示例中除<code>main()</code>函数以外，还有自己的函数：<code>butler()</code></p>
+<ul>
+<li>第3行的是函数原型（prototype）</li>
+<li>第7行的是函数调用（function call）</li>
+<li>第12-15行的是函数定义（function definition）</li>
+</ul>
+<p>C的惯例是把<code>main()</code>放在开头，因为它提供了源代码的基本框架。</p>
+<h2 id="源代码结构小结"><a href="#源代码结构小结" class="headerlink" title="源代码结构小结"></a>源代码结构小结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    /* 语句 */</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>除预处理器指令以外，由一个或多个函数组成，必须有<code>main()</code>函数</li>
+<li>函数的组成</li>
+</ol>
+<ul>
+<li>函数头<ul>
+<li>函数的返回类型</li>
+<li>函数名</li>
+<li>传入该函数的信息类型</li>
+</ul>
+</li>
+<li>函数体</li>
+</ul>
+<h2 id="提高源代码的可读性"><a href="#提高源代码的可读性" class="headerlink" title="提高源代码的可读性"></a>提高源代码的可读性</h2><ul>
+<li>使用有意义的变量名和函数名</li>
+<li>写注释</li>
+<li>使用空行分隔多个部分</li>
+<li>每条语句各占一行</li>
+</ul>
+<h2 id="调试程序"><a href="#调试程序" class="headerlink" title="调试程序"></a>调试程序</h2><p>程序的错误：bug<br>找出并修正错误的过程：调试（debug）</p>
+<p>通过以下源代码说明语法错误、语义错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// ```c</span><br><span class="line">/* nogood.c -- 有错误的程序 */</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">(</span><br><span class="line">    int n, int n2, int n3;</span><br><span class="line"></span><br><span class="line">    /* 该程序有多处错误</span><br><span class="line">    n = 5;</span><br><span class="line">    n2 = n * n;</span><br><span class="line">    n3 = n2 * n2;</span><br><span class="line">    printf(&quot;n = %d, n squared = %d, n cubed = %d\n&quot;, n, n2, n3)</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h3><ul>
+<li><code>main()</code>函数体使用了圆括号</li>
+<li>第5行的的变量声明</li>
+<li>第7行的注释漏掉了<code>*/</code></li>
+<li><code>printf()</code>函数所在语句的末尾漏掉了分号</li>
+</ul>
+<p>更正语法错误后的源代码如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// ```c</span><br><span class="line">/* stillbad.c -- 修复了语法错误的程序 */</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int n, n2, n3;</span><br><span class="line"></span><br><span class="line">    n = 5;</span><br><span class="line">    n2 = n * n;</span><br><span class="line">    n3 = n2 * n2;</span><br><span class="line">    printf(&quot;n = %d, n squared = %d, n cubed = %d\n&quot;, n, n2, n3);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如何检查语法错误：</p>
+<ul>
+<li>编译前，发现和修正明显的错误</li>
+<li>看看编译器是否报错<ul>
+<li>有时不用把编译器报告的所有错误逐一修正，仅修正第1条或前几处错误后，错误信息就会少很多</li>
+<li>报错的位置可能比真正的错误位置滞后一行</li>
+</ul>
+</li>
+</ul>
+<h3 id="语义错误"><a href="#语义错误" class="headerlink" title="语义错误"></a>语义错误</h3><p>语义错误的含义：源代码未违反 C 语言的规则，但是程序没有按照预期想法进行，导致结果错误。<br>举例：</p>
+<ul>
+<li><em> n2;<code>改为</code>n3 = n2 </em><em> n2;<code>改为</code>n3 = n2 </em><em> n2;<code>改为</code>n3 = n2 </em><em> n2;<code>改为</code>n3 = n2 </em>2 * n;`</li>
+</ul>
+<p>编译器不知道程序员的真正意图，无法检测语义错误。对于语义错误，可以跟随程序的执行，查看每一步的程序状态（program state，程序执行过程中，某个给定点上所有变量值的集合，是当前计算机状态的快照）。</p>
+<p>定位语义错误的具体方法：</p>
+<ul>
+<li>自己模拟计算机逐步执行</li>
+<li>在关键点插入额外的<code>printf</code>语句，监视指定变量值的变化</li>
+<li>使用调试器（debugger）</li>
+</ul>
+<h3 id="勿随便使用关键字与保留标识符"><a href="#勿随便使用关键字与保留标识符" class="headerlink" title="勿随便使用关键字与保留标识符"></a>勿随便使用关键字与保留标识符</h3><ul>
+<li>关键字，例如<code>int</code>、<code>if</code>：使用关键字不当会引起语法错误</li>
+<li>保留标识符（reserved identifier），例如<code>printf</code>：已被指定用途或保留使用权，如果用于表示其他意思会导致一些问题</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        CAN入门 - Ardent Yang&#39;s blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不积跬步，无以至千里 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Ardent Yang</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-text">基本术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAN"><span class="toc-text">CAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">CAN的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">CAN的组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85CAN%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B%EF%BC%9AReCAN"><span class="toc-text">实际CAN数据示例：ReCAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%9C%BA%E6%99%AF%E3%80%81%E6%94%B6%E9%9B%86%E4%B8%8E%E7%BB%84%E6%88%90"><span class="toc-text">数据采集场景、收集与组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B"><span class="toc-text">数据示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SocketCAN"><span class="toc-text">SocketCAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#can-utils%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">can-utils软件包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 不积跬步，无以至千里 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        CAN入门
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-17 14:58:56</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>控制器区域网络（Controller Area Nework，CAN）由博世公司开发，用于减少车辆中不断增长的微控制器和电子控制单元（Electronic Control Unit，ECU）的连接线数量。</p>
+<h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><ul>
+<li>车载诊断（On-board Diagnostics，OBD）：分为OBD-Ⅰ和OBD-Ⅱ</li>
+<li>差分对：使用两根传输线传输信号，将其中一根设置为高压，另一根设置为低压，测量两者间的电压差作为接收的信号。这两条传输线构成一个差分对。</li>
+<li>ISO-TP：指 ISO 15765-2 协议，允许数据包在 CAN 上传输。CAN 协议本身对每个包的传输限制在 8 个字节，而 ISO-TP 使得更大的数据包可以在 CAN 上传输。</li>
+</ul>
+<h2 id="CAN"><a href="#CAN" class="headerlink" title="CAN"></a>CAN</h2><p>由博世开发的协议，使用 CAN-HI 和 CAN-LO 两条线作为差分对</p>
+<h3 id="CAN的分类"><a href="#CAN的分类" class="headerlink" title="CAN的分类"></a>CAN的分类</h3><ul>
+<li>高速CAN</li>
+<li>容错CAN</li>
+<li>单线CAN</li>
+</ul>
+<h3 id="CAN的组成"><a href="#CAN的组成" class="headerlink" title="CAN的组成"></a>CAN的组成</h3><h2 id="实际CAN数据示例：ReCAN"><a href="#实际CAN数据示例：ReCAN" class="headerlink" title="实际CAN数据示例：ReCAN"></a>实际CAN数据示例：ReCAN</h2><p>ReCAN 是一个开源实际 CAN 数据集。</p>
+<p>ReCAN-Dataset for reverse engineering of Controller Area Network</p>
+<h3 id="数据采集场景、收集与组成"><a href="#数据采集场景、收集与组成" class="headerlink" title="数据采集场景、收集与组成"></a>数据采集场景、收集与组成</h3><p>（1） 数据收集</p>
+<p>OBD - Ⅱ<br>500k 波特率<br>数据格式：CSV文件</p>
+<p>（2） 数据集组成</p>
+<p>原始数据与解码后的数据</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>代号</th>
+<th>车型</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-1</td>
+<td>阿尔法·罗密欧 Giulia</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C-2</td>
+<td>欧宝 Corsa</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>T-1</td>
+<td>三菱扶桑 Canter</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>T-2</td>
+<td>五十菱 M55</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>T-3</td>
+<td>比亚乔 Porter Maxi</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>（3） 数据采集场景<br>城市快速路、重复刹车、城市道路和车辆静止</p>
+<h3 id="数据示例"><a href="#数据示例" class="headerlink" title="数据示例"></a>数据示例</h3><p>原始数据示例：fig 1(b)</p>
+<h2 id="SocketCAN"><a href="#SocketCAN" class="headerlink" title="SocketCAN"></a>SocketCAN</h2><h3 id="can-utils软件包"><a href="#can-utils软件包" class="headerlink" title="can-utils软件包"></a>can-utils软件包</h3><ol>
+<li>安装can-utils<br>执行命令：<br><code>sudo apt-get install can-utils</code><br><img src="introduction-to-can/install_can_utils.png" alt="fig 4.1"><!-- ![fig 4.1](can_utils_install.png) --></li>
+<li>设置虚拟CAN网络<br>由于缺少实际的设备，在这里使用虚拟 CAN 网络。</li>
+</ol>
+<p>（1）加载 vcan 模块：<code>sudo modprobe vcan</code></p>
+<p>（2）使用<code>dmesg</code>命令显示消息，终端输出的最后一行为：<br><img src="introduction-to-can/load_vcan.jpg" alt="fig 4.2"></p>
+<p>（3）使用<code>ip link</code>命令设置接口<br><!-- 设置波特率/比特率（无需为虚拟接口设定） --><br><code>sudo ip link add dev vcan0 type vcan</code><br><code>sudo ip link set up vcan0</code></p>
+<p>（4）使用<code>ifconfig</code>命令确认 vcan0 接口存在：<code>ifconfig vcan0</code><br>终端输出：<br><img src="introduction-to-can/ifconfig.jpg" alt="fig 4.3"><br>Tips: 如果提示<code>Command &#39;ifconfig&#39; not found, but can be installed with</code>…，可以先用<code>which ifconfig</code>检查<code>ifconfig</code>是否已安装。若未安装，使用<code>sudo apt install net-tools</code>进行安装。<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/fzy999999/article/details/134007035">Linux中ifconfig :command not found 找不到命令的解决方法_ifconfig未找到命令-CSDN博客</a></p>
+<!-- 在固件中实现 SLCAN 协议（使用实际设备时） -->
+<ol>
+<li>安装 can-isotp.ko模块<br>can-isotp.ko 模块是一个 Linux 内核模块，后缀“ko”表示它是在 Linux 等类 Unix 操作系统中可以被加载的内核模块。通过名称可以知道它大概与 ISO-TP 协议有关，实际上它就是在 CAN 上为 ISO-TP 协议提供支持。</li>
+</ol>
+<p>（1） 首先检查 can-isotp 模块是否已经被安装：稳定性得到验证以后（内核版本在 5.10 之后），被移到 Linux 内核的标准分支中。</p>
+<ul>
+<li>执行命令：<code>modinfo can-isotp</code><br><img src="introduction-to-can/modinfo_can_isotp.jpg" alt="fig 4.4"></li>
+</ul>
+<p>（2）安装所需的依赖以及特定版本的 Linux 内核头文件 </p>
+<ul>
+<li><code>sudo apt-get install build-essential linux-headers-$(uname -r)</code><br><img src="introduction-to-can/build_essential_linux_headers.jpg" alt="fig 4.5"></li>
+</ul>
+<p>（3）下载：<code>git clone https://github.com/hartkopp/can-isotp.git</code></p>
+<p>（4）切换到<code>can-isotp-master</code>目录下进行编译：</p>
+<ul>
+<li><code>cd can-isotp-master</code></li>
+<li><code>make</code><br><img src="introduction-to-can/can_isotp_make.jpg" alt="fig 4.6"></li>
+<li><code>sudo make modules_install</code><br>报错：SSL error<br><img src="introduction-to-can/make_modules_install_ssl_error.jpg" alt="fig 4.7"><ul>
+<li>原因：Boot 模式是 UEFI，且 Secure Boot enabled</li>
+<li>解决：<ul>
+<li>关闭 Secure Boot：选择 UEFI Firmware Settings，进入 Phoenix SecureCore Technology Setup，Security - Secure Boot，将 Enabled 切换为 Disabled，保存并退出</li>
+<li><code>sudo modprobe can</code>，成功以后终端无输出</li>
+</ul>
+</li>
+<li>参考：<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/58546126/insmod-error-could-not-insert-module-helloworld-ko-operation-not-permitted">linux - insmod: ERROR: could not insert module HelloWorld.ko: Operation not permitted - Stack Overflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hartkopp/can-isotp/issues/25">missing step from installation instructions · Issue #25 · hartkopp/can-isotp (github.com)</a>的“brandonros commented on Dec 18, 2020”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>（5）使用 <code>insmod</code> 命令，将模块插入到内核中：<code>sudo insmod ./net/can/can-isotp.ko</code>，成功以后终端无输出</p>
+<p>（6）使用<code>demesg</code>命令，查看是否有 isotp 协议<br><img src="introduction-to-can/can_isotp_module_verification_failed.jpg" alt="fig 4.8"><br>签名或密钥缺失，暂时未解决</p>
+<p>（7）Secure Boot 改为 Enabled</p>
+<!-- ### SocketCAN编程 -->
+<!-- ### socketcand守护进程 -->
+<!-- ### Kayak -->
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/hartkopp/can-isotp">hartkopp/can-isotp: Linux Kernel Module for ISO 15765-2:2016 CAN transport protocol PLEASE NOTE: This module is part of the mainline Linux kernel since version 5.10 (github.com)</a><!-- - 李华峰，陈虹著. Wireshark网络分析从入门到实践[M]. 北京：人民邮电出版社, 2019.04. --></li>
+<li>（美）卢卡·文图瑞，克里斯托弗·柯尔达著；刘帅，蒋朝阳译. 自动驾驶汽车关键技术丛书 自动驾驶汽车视觉和行为实践 用Python3和OpenCV4探索视觉感知车道检测和物体分类[M]. 北京：机械工业出版社, 2023.06.</li>
+<li>（美）CraigSmith著；杜静，李博，敖富江译. 汽车黑客大曝光[M]. 北京：清华大学出版社, 2017.01.</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

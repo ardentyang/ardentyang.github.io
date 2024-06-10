@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Lidar-Camera-Calib的安装 - Ardent Yang&#39;s blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不积跬步，无以至千里 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Ardent Yang</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">安装步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 不积跬步，无以至千里 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Lidar-Camera-Calib的安装
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-13 19:17:54</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>Autoware.AI</code> 1.10 版本后，标定工具箱需要另外安装。AutoCore开发了轻量级标定工具 LC-Calib，不依赖于Autoware环境，即不需要下载安装编译整个autoware环境，可独立运行。</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>以下为本文安装时，依赖及其所使用的版本，官方建议请参阅文末链接</p>
+<ul>
+<li>ROS1 noetic</li>
+<li>PCL 1.10.0</li>
+<li>Eigen 3.3.7</li>
+<li>OpenCV 4.2.0<br>本文使用的是 4.2.0 版本，但是建议3.2.0版本，因为使用 4.2.0 版本需要更新某些函数的书写</li>
+<li>Ceres 2.0.0<br>建议2.0.0版本，2.2.0版本会报错</li>
+<li>yaml-cpp 0.6.2<br>建议 0.6 版本，0.5 版本会报错</li>
+</ul>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ol>
+<li>从 GitHub 上下载 calibration_tools-main.zip</li>
+<li>解压到某一路径下，这里选择<code>/home/opt</code></li>
+<li>在终端执行命令：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd lidar-cam-calibrelated</span><br></pre></td></tr></table></figure></li>
+<li>执行命令：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>报错：</p>
+<!-- ![fig 1](installation-of-lidar-camera-calib/opencv_required_version.jpg) -->
+<p><img src="opencv_required_version.jpg" alt="fig 1"><br>解决：在 CMakeLists.txt 中注释掉第 29 行，并添加：<code>find_package(OpenCV 4.2.0 REQUIRED)</code><br>参考：<a target="_blank" rel="noopener" href="https://github.com/dusty-nv/jetson-inference/issues/344">compatibility with OpenCV V.4 · Issue #344 · dusty-nv/jetson-inference (github.com)</a></p>
+</li>
+<li><p>报错：</p>
+<!-- ![fig 2](installation-of-lidar-camera-calib/no_ceres.jpg) -->
+<p><img src="no_ceres.jpg" alt="fig 2"><br>解决：安装 ceres，最后<code>make install</code>的时候用<code>sudo</code><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48083022/article/details/118282363">Could not find a package configuration file provided by “Ceres“-CSDN博客</a></p>
+</li>
+<li><p>卡死<br>解决：首先 ctrl+c ，然后在编译时使用较少的核心数，执行：<code>catkin_make -j2</code><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40301351/article/details/135890671">Catkin_make卡住，电脑死机_使用catkin build编译ros包时导致电脑内存用完卡死-CSDN博客</a></p>
+</li>
+<li><p>报错：</p>
+<!-- ![fig 3](installation-of-lidar-camera-calib/error_ceres_opencv.png) -->
+<p><img src="error_ceres_opencv.png" alt="fig 3"></p>
+<ul>
+<li>关于 ceres 的错误：<code>&#39;LocalParameterization&#39; is not a member of &#39;ceres&#39;</code><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41169280/article/details/127559735">ubuntu安装ceres、pyceres及对应报错解决-CSDN博客</a>，解决：<ul>
+<li>查看版本号，发现是 2.2.0，参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41821678/article/details/120889641">查看Ubuntu中的OpenCV、Eigen、Ceres版本_查看ceres版本-CSDN博客</a></li>
+<li>卸载 2.2.0 版本：<br>依次执行：<ul>
+<li><code>sudo rm -r /usr/local/lib/cmake/Ceres</code></li>
+<li><code>sudo rm -rf /usr/local/include/ceres /usr/local/lib/libceres.a</code></li>
+<li>删除 /home/opt 下的 ceres-solver-master 和 ceres-bin</li>
+</ul>
+</li>
+<li>安装 2.0.0 版本<ul>
+<li>下载 2.0.0 版本：<a target="_blank" rel="noopener" href="https://ceres-solver.googlesource.com/ceres-solver">ceres-solver - Git at Google (googlesource.com)</a></li>
+<li>新建文件夹 ceres-solver-2.0.0</li>
+<li>解压到刚刚新建的文件夹下：<code>tar zxf [文件夹名]</code><br>按照之前的步骤安装 ceres （依赖无需再装）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>关于 OpenCV 的错误<br>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liu-jun/p/3457554.html">OpenCV 颜色空间转换参数CV_BGR2GRAY改变 - 阳光守望者 - 博客园 (cnblogs.com)</a>，解决：在 feature_extract.cpp 中进行如下修改：<ul>
+<li>855行：<code>CV_CALIB_CB_ADAPTIVE_THRESH</code> 改为 <code>cv::CALIB_CB_ADAPTIVE_THRESH</code></li>
+<li>855行：<code>CV_CALIB_CB_FILTER_QUADS</code> 改为 <code>cv::CALIB_CB_FILTER_QUADS</code></li>
+<li>855行：<code>CV_CALIB_CB_NORMALIZE_IMAGE</code> 改为 <code>cv::CALIB_CB_NORMALIZE_IMAGE</code></li>
+<li>855行：<code>CV_CALIB_CB_FAST_CHECK</code> 改为 <code>cv::CALIB_CB_FAST_CHECK</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最终安装成功：</p>
+<!-- ![fig 4](installation-of-lidar-camera-calib/success_1.png) -->
+<p><img src="success_1.png" alt="fig 4"></p>
+<!-- ![fig 5](installation-of-lidar-camera-calib/success_2.png) -->
+<p><img src="success_2.png" alt="fig 5"></p>
+<!-- ![fig 6](installation-of-lidar-camera-calib/success_3.png) -->
+<p><img src="success_3.png" alt="fig 6"></p>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://autocore.ai/">AutoCore - Intelligent Mobility</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/autocore-ai/calibration_tools/tree/main/lidar-cam-calib-related">calibration_tools/lidar-cam-calib-related at main · autocore-ai/calibration_tools (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_56719965/article/details/138266422">Autoware不同版本的学习及标定工具的使用-CSDN博客</a></li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

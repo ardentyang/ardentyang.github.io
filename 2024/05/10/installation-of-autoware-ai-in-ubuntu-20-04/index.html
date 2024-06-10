@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        记录autoware.ai在Ubuntu 20.04中的安装 - Ardent Yang&#39;s blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不积跬步，无以至千里 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Ardent Yang</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Autoware%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="toc-text">Autoware的简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Autoware%E7%9A%84%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">Autoware的安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Ubuntu-20-04"><span class="toc-text">安装Ubuntu 20.04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ROS"><span class="toc-text">安装ROS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Autoware"><span class="toc-text">安装Autoware</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 不积跬步，无以至千里 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        记录autoware.ai在Ubuntu 20.04中的安装
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-10 11:54:18</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="Autoware的简介"><a href="#Autoware的简介" class="headerlink" title="Autoware的简介"></a>Autoware的简介</h2><p>Autoware 是世界上第一款开源自动驾驶系统，由名古屋大学教授加藤申平率领的团队开发。2015年，该团队成立了 Tier IV 公司，对 Autoware 进行维护与版本迭代。目前，Autoware 共有 autoware.ai、autoware.auto 和 autoware.universe 三个版本，其中 ai 版本基于 ROS 1.0，后两个版本基于 ROS 2.0。</p>
+<h2 id="Autoware的安装步骤"><a href="#Autoware的安装步骤" class="headerlink" title="Autoware的安装步骤"></a>Autoware的安装步骤</h2><h3 id="安装Ubuntu-20-04"><a href="#安装Ubuntu-20-04" class="headerlink" title="安装Ubuntu 20.04"></a>安装Ubuntu 20.04</h3><p>这一步基本没有问题，不具体说了。不过，需要注意 Ubuntu 18.04 对应的 ROS 版本 Melodic 在2023年5月已结束生命周期，因此选择20.04版本。</p>
+<h3 id="安装ROS"><a href="#安装ROS" class="headerlink" title="安装ROS"></a>安装ROS</h3><ol>
+<li>设置安装源</li>
+</ol>
+<p>选择设置来自中科大的安装源<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#x27;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#x27;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>报错：Synax error: Unerminated quoted string<br>解决：将dash改为shell<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42623551/article/details/121663561">linux下编译报错：gcc: Syntax error: Unterminated quoted string-CSDN博客</a></p>
+</li>
+<li><p>报错：line 0: unexpeced EOF while looking for matching <code>&quot;&#39;
+line 1: syntax error: unexpeced end of file
+解决：&#39;lsb_release -cs&#39;需要换成</code>lsb_release -cs`<br>参考：<a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/124-an-zhuang-ros.html">1.2.4 安装 ROS · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></p>
+</li>
+</ul>
+<ol>
+<li><p>设置ROS的key</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver &#x27;hkp://keyserver.ubuntu.com:80&#x27; --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+</li>
+</ol>
+<p>（1）更新apt<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></p>
+<p>（2）安装与Ubuntu版本相对应版本的ROS<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-noetic-desktop-full</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>配置环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试ROS<br>参考：<a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/12-roskai-fa-gong-ju-an-zhuang/125-ce-shi-ros.html">1.2.6 资料:其他ROS版本安装 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></p>
+</li>
+</ol>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><ol>
+<li>依次运行以下指令</li>
+</ol>
+<p>（1）更新软件列表<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>（2）安装依赖<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure></p>
+<p>（3）添加 Docker 的官方 GPG 密钥<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - sudo</span><br></pre></td></tr></table></figure></p>
+<p>（4）根据自己的系统设置一个稳定的仓库<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">    &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span><br><span class="line">    $(lsb_release -cs) \</span><br><span class="line">    stable&quot;</span><br></pre></td></tr></table></figure></p>
+<p>（5）再更新一次软件列表<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>（6）安装 Docker<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>验证 Docker 是否安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加当前用户到 Docker 用户组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br></pre></td></tr></table></figure>
+<p>显示 groupadd: group ‘docker’ already exists</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br></pre></td></tr></table></figure>
+<p>显示 Adding user jem to group docker</p>
+</li>
+</ol>
+<h3 id="安装Autoware"><a href="#安装Autoware" class="headerlink" title="安装Autoware"></a>安装Autoware</h3><ol>
+<li><p>准备镜像<br>从《智能驾驶理论与实践系列丛书 无人系统驾控实践 基于Autoware自动驾驶平台》一书的附件中获取 Autoware 的镜像文件</p>
+</li>
+<li><p>安装 portainer<br>portainer 是 Docker 的可视化工具</p>
+</li>
+</ol>
+<p>（1）从 Docker Hub 中查找镜像<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search porainer|head -n 3</span><br></pre></td></tr></table></figure><br>报错：<br><!-- ![fig 2.1](installation-of-autoware-ai-in-ubuntu-20-04/docker_permission_denied.jpg) --><br><img src="docker_permission_denied.jpg" alt="fig 2.1"><br>解决：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a jem docker</span><br><span class="line">new grp docker</span><br></pre></td></tr></table></figure></p>
+<p>（2）从 Docker Hub 中下载 portainer-1.24.1 版本的镜像<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull portainer/portainer:1.24.1</span><br></pre></td></tr></table></figure></p>
+<p>（3）创建并运行 portainer 容器<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always -v/var/run/docker.sock:/var/run/docker.sock --name portainer portainer/portainer:1.24.1</span><br></pre></td></tr></table></figure></p>
+<p>（4）打开 portainer.io 界面，对于本机，在浏览器中访问 <a target="_blank" rel="noopener" href="https://localhost:9000">https://localhost:9000</a> ，对于其他机器，访问 portainer 所在机器的 IP 地址，例如： 10.194.252.218 。设置密码；选择 Local ，点击 Connect ；即显示 portainer 已经运行<br><!-- ![fig 2.2](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Local_Connect.jpg) --><br><img src="portainer_Local_Connect.jpg" alt="fig 2.2"><br><!-- ![fig 2.3](installation-of-autoware-ai-in-ubuntu-20-04/portainer_local_up.jpg) --><br><img src="portainer_local_up.jpg" alt="fig 2.3"></p>
+<ol>
+<li>导入镜像</li>
+</ol>
+<p>（1）点进刚刚创建的容器，在左侧菜单中，点击左侧菜单中的 Images 选项<br><!-- ![fig 3.1](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Images.png) --><br><img src="portainer_Images.png" alt="fig 3.1"></p>
+<p>（2）单击 Import 按钮，进入 “Import image” 界面<br><!-- ![fig 3.2](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Import_Image.jpg) --><br><img src="portainer_Import_Image.jpg" alt="fig 3.2"></p>
+<p>（3）单击 Select file 按钮，选择本机中的文件 hqautoware_v0.3_210518.tar，点击 Upload ，出现 Images uploading in progress…<br><!-- ![fig 3.3](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Select_file.jpg) --><br><img src="portainer_Select_file.jpg" alt="fig 3.3"><br><!-- ![fig 3.4](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Images_uploading_in_progress.jpg) --><br><img src="portainer_Images_uploading_in_progress.jpg" alt="fig 3.4"></p>
+<p>（4）等待镜像文件上传完成</p>
+<p>（5）单击 Images 按钮，返回 Image list，可以看到已导入的镜像。记住导入镜像的 Tags：hqautoware/hqautoware:v0.3_210518，后面创建容器时会用到<br><!-- ![fig 3.5](installation-of-autoware-ai-in-ubuntu-20-04/portainer_back_to_Image_list.png) --><br><img src="portainer_back_to_Image_list.png" alt="fig 3.5"></p>
+<ol>
+<li>创建容器</li>
+</ol>
+<p>（1）单击左侧菜单中的 Containers，进入 Container list ，界面中列出了容器，以及与容器相关的操作，例如 Start、Stop 等<br><!-- ![fig 4.1](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Containers.png) --><br><img src="portainer_Containers.png" alt="fig 4.1"></p>
+<p>（2）单击 Add container<br><!-- ![fig 4.2](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Add_container.png) --><br><img src="portainer_Add_container.png" alt="fig 4.2"></p>
+<ul>
+<li><p>指定容器名和使用的镜像</p>
+<ul>
+<li>容器名，即 Name ，约定命名形式为“姓名缩写_下划线_auto_下划线_说明”，在此处命名为 lb_auto_local</li>
+<li>镜像名，即 Image ，使用之前所导入镜像的 Tags<!-- ![fig 4.3](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Create_container_Name_Image.jpg) -->
+<img src="portainer_Create_container_Name_Image.jpg" alt="fig 4.3"></li>
+</ul>
+</li>
+<li><p>单击 Manual network port publishing 后的 publish a new nework port，对容器的以下端口进行映射</p>
+</li>
+</ul>
+<!-- ![fig 4.4](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Network_ports_configuration.jpg) -->
+<p><img src="portainer_Network_ports_configuration.jpg" alt="fig 4.4"></p>
+<p>（3）在 Advanced container settings 的 Command &amp; logging 标签下，做如下修改<br><!-- ![fig 4.5](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Advanced_container_settings_Command_logging.jpg) --><br><img src="portainer_Advanced_container_settings_Command_logging.jpg" alt="fig 4.5"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>host端口</th>
+<th>container端口</th>
+<th>container端口的协议</th>
+<th>container端口的用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12322</td>
+<td>22</td>
+<td>TCP</td>
+<td>ssh登录</td>
+</tr>
+<tr>
+<td>13389</td>
+<td>3389</td>
+<td>TCP</td>
+<td>远程桌面</td>
+</tr>
+<tr>
+<td>9090</td>
+<td>9090</td>
+<td>TCP</td>
+<td>LGSVL Simulator 仿真</td>
+</tr>
+<tr>
+<td>11311</td>
+<td>11311</td>
+<td>TCP</td>
+<td>ROS Master 服务端口，可用于分布式调试</td>
+</tr>
+<tr>
+<td>2368</td>
+<td>2368</td>
+<td>UDP</td>
+<td>镭神激光雷达</td>
+</tr>
+<tr>
+<td>2369</td>
+<td>2369</td>
+<td>UDP</td>
+<td>镭神激光雷达</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>（4）在 Advanced container settings 的 Volumes 标签下，增加 volume 映射<br>Entry Point: /tmp/entrypoint.sh<br>User: root<br>Console: Interactive &amp; TTY (-i -t)<br><!-- ![fig 4.6](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Advanced_container_settings_Volumes.jpg) --><br><img src="portainer_Advanced_container_settings_Volumes.jpg" alt="fig 4.6"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>container</td>
+<td>/tmp/.X11-unix</td>
+<td>Bind</td>
+</tr>
+<tr>
+<td>host</td>
+<td>/tmp/.X11-unix</td>
+<td>Writable</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>container</td>
+<td>/home/jem/.Xauthority</td>
+<td>Bind</td>
+</tr>
+<tr>
+<td>host</td>
+<td>/home/jem/.Xauthority</td>
+<td>Writable</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>container</td>
+<td>/home/autoware/shared_dir</td>
+<td>Bind</td>
+</tr>
+<tr>
+<td>host</td>
+<td>/home/jem/shared_dir</td>
+<td>Writable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>（5）在 Advanced container settings 的 Network 标签下，</p>
+<ul>
+<li>设置 Network 为 bridge </li>
+<li>hostname 可以自定义，此处设置为 autoware</li>
+</ul>
+<!-- ![fig 4.7](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Advanced_container_settings_Network.jpg) -->
+<p><img src="portainer_Advanced_container_settings_Network.jpg" alt="fig 4.7"></p>
+<p>（6）在 Advanced container settings 的 Env 标签下，进行如下设置</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XAUTHORITY</td>
+<td>/home/jem/.Xauthority</td>
+</tr>
+<tr>
+<td>DISPLAY</td>
+<td>:0</td>
+</tr>
+<tr>
+<td>USER_ID</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</td>
+</tr>
+<tr>
+<td>LANG</td>
+<td>en_US.UTF-8</td>
+</tr>
+<tr>
+<td>LC_ALL</td>
+<td>C.UTF-8</td>
+</tr>
+<tr>
+<td>ROS_DISTRO</td>
+<td>noetic</td>
+</tr>
+<tr>
+<td>USERNAME</td>
+<td>autoware</td>
+</tr>
+<tr>
+<td>PULAE_SERVER</td>
+<td>/run/pulse/native</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- ![fig 4.8](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Advanced_container_settings_Env.jpg) -->
+<p><img src="portainer_Advanced_container_settings_Env.jpg" alt="fig 4.8"></p>
+<p>（7）在 Advanced container settings 的 Runtime &amp; Resources 标签下，Privileged mode 设置为开启状态，使得容器可以访问外围设备</p>
+<!-- ![fig 4.9](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Advanced_container_settings_Runtime_Resources.jpg) -->
+<p><img src="portainer_Advanced_container_settings_Runtime_Resources.jpg" alt="fig 4.9"></p>
+<p>（8）在 Actions 中，单击 Deploy the container ，部署容器</p>
+<!-- ![fig 4.10](installation-of-autoware-ai-in-ubuntu-20-04/portainer_Actions.jpg) -->
+<p><img src="portainer_Actions.jpg" alt="fig 4.10"></p>
+<p>提示 Deployment in progress … ，完成后即可看到 Container list 中出现名为 lb_auto_local 的容器</p>
+<!-- ![fig 4.11](installation-of-autoware-ai-in-ubuntu-20-04/portainer_back_to_Container_list.png) -->
+<p><img src="portainer_back_to_Container_list.png" alt="fig 4.11"></p>
+<p>（9）到此为止，Autoware 容器已创建完毕</p>
+<p>（10）创建完成后，如需对容器的部署内容进行修改，可以单击已创建好的 Autoware 容器，进去之后，点击 Duplicate/Edit 按钮，即可基于原先容器的配置进行修改，快速 创建新容器 或 替换原有容器</p>
+<!-- ![fig 4.12](installation-of-autoware-ai-in-ubuntu-20-04/portainer_lb_auto_local_Container_details.png) -->
+<p><img src="portainer_lb_auto_local_Container_details.png" alt="fig 4.12"></p>
+<p>（11）准备重启容器</p>
+<ul>
+<li>先把 lb_auto_local Stop 掉，然后 log out 退出登录</li>
+<li>关掉运行 portainer 的终端（忽略掉提示）</li>
+<li>重启计算机</li>
+</ul>
+<ol>
+<li>启动和编译Autoware</li>
+</ol>
+<p>（1）在终端中运行<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start lb_auto_local</span><br><span class="line">docker exec -it lb_auto_local /tmp/entrypoint.sh</span><br></pre></td></tr></table></figure></p>
+<!-- ![fig 5.1](installation-of-autoware-ai-in-ubuntu-20-04/docker_start_exec.jpg) -->
+<p><img src="docker_start_exec.jpg" alt="fig 5.1"></p>
+<p>此时已经进入了 Autoware</p>
+<p>（2）第一次使用时，需要编译 Autoware<br>单独编译 Autoware 中的一个模块，或者完全编译。<br>首先尝试单独编译其中的底盘驱动程序：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --paths src/ drivers/awf_drivers/yhs</span><br></pre></td></tr></table></figure></p>
+<!-- ![fig 5.2](installation-of-autoware-ai-in-ubuntu-20-04/colcon_alone.jpg) -->
+<p><img src="colcon_alone.jpg" alt="fig 5.2"><br>显示 0 packages finished，原因不详。<br>再尝试完全编译：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd hqautoware/</span><br><span class="line">source install/setup.bash</span><br><span class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release</span><br></pre></td></tr></table></figure><br>部分包出现了警告，最后的编译结果：<br><!-- ![fig 5.3](installation-of-autoware-ai-in-ubuntu-20-04/colcon_all.jpg) --><br><img src="colcon_all.jpg" alt="fig 5.3"></p>
+<p>（3）运行以下代码，以启动 Autoware 的 “Runtime Manager (于autoware)” 界面：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch runtime_manager runtime_manager.launch</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>报错：<!-- ![fig 5.4](installation-of-autoware-ai-in-ubuntu-20-04/runtime_manager.launch_RLException.jpg) -->
+<img src="runtime_manager.launch_RLException.jpg" alt="fig 5.4"><br>原因：不要在新的终端运行，而是直接在原来已经启动了autoware的终端运行<br>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/662229469">安装autoware.ai遇到的问题 - 知乎 (zhihu.com)</a><br>正确运行以后，<br>a. 终端显示：<!-- ![fig 5.5](installation-of-autoware-ai-in-ubuntu-20-04/autoware_runtime_manager.launch.png) -->
+<img src="autoware_runtime_manager.launch.png" alt="fig 5.5"></li>
+</ul>
+<p>b. 此外，出现了另一个终端：<br><!-- ![fig 5.6](installation-of-autoware-ai-in-ubuntu-20-04/Terminal_on_autoware.png) --><br><img src="Terminal_on_autoware.png" alt="fig 5.6"></p>
+<p>c. 以及 Runtime Manager (on autoware)，共有9个标签页<br>page_1: Quick Start<br><!-- ![fig 5.7](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Quick_Start.jpg) --><br><img src="Runtime_Manager_on_autoware_Quick_Start.jpg" alt="fig 5.7"></p>
+<p>page_2: Setup<br><!-- ![fig 5.8](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Setup.jpg) --><br><img src="Runtime_Manager_on_autoware_Setup.jpg" alt="fig 5.8"></p>
+<p>page_3: Map<br><!-- ![fig 5.9](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Map.jpg) --><br><img src="Runtime_Manager_on_autoware_Map.jpg" alt="fig 5.9"></p>
+<p>page_4: Sensing<br><!-- ![fig 5.10](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Sensing.png) --><br><img src="Runtime_Manager_on_autoware_Sensing.png" alt="fig 5.10"></p>
+<p>page_5: Computing<br><!-- ![fig 5.11](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Computing.png) --><br><img src="Runtime_Manager_on_autoware_Computing.png" alt="fig 5.11"></p>
+<p>page_6: Interface<br><!-- ![fig 5.12](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Interface.jpg) --><br><img src="Runtime_Manager_on_autoware_Interface.jpg" alt="fig 5.12"></p>
+<p>page_7: Simulation<br><!-- ![fig 5.13](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Simulation.jpg) --><br><img src="Runtime_Manager_on_autoware_Simulation.jpg" alt="fig 5.13"></p>
+<p>page_8: Topics<br><!-- ![fig 5.14](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_Topics.jpg) --><br><img src="Runtime_Manager_on_autoware_Topics.jpg" alt="fig 5.14"></p>
+<p>page_9: State<br><!-- ![fig 5.15](installation-of-autoware-ai-in-ubuntu-20-04/Runtime_Manager_on_autoware_State.jpg) --><br><img src="Runtime_Manager_on_autoware_State.jpg" alt="fig 5.15"></p>
+<p>至此，完成了 Autoware 的安装。</p>
+<p>（4）退出 Autoware：在原来的终端 Ctrl + C 即可</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://autoware.org/">Home Page - Autoware</a></li>
+<li>付明磊，张文安，何军强编. 智能驾驶理论与实践系列丛书 无人系统驾控实践 基于Autoware自动驾驶平台[M]. 2022.10.</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

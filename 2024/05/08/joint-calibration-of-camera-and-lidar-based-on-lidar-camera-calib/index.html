@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        基于Lidar-Camera-Calib工具的单目相机和激光雷达的联合标定 - Ardent Yang&#39;s blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不积跬步，无以至千里 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Ardent Yang</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7"><span class="toc-text">标定工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D"><span class="toc-text">实操</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7"><span class="toc-text">安装标定工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">添加环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE"><span class="toc-text">准备数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%97%8B%E8%BD%AC%E5%92%8C%E5%B9%B3%E7%A7%BB"><span class="toc-text">计算旋转和平移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E8%A7%89%E9%AA%8C%E8%AF%81"><span class="toc-text">视觉验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 不积跬步，无以至千里 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        基于Lidar-Camera-Calib工具的单目相机和激光雷达的联合标定
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-08 11:13:09</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="标定工具"><a href="#标定工具" class="headerlink" title="标定工具"></a>标定工具</h2><p>标定工具使用来自 AutoCore 的 Lidar-Camera-Calib ，一款轻量级的激光雷达-相机离线标定的自动工具包。标定的基本想法是：</p>
+<ul>
+<li>从图像和点云中提取棋盘角的角/边缘</li>
+<li>使用 PnP(Perspective-n-Point) 大致计算转换矩阵</li>
+<li>使用基于多个数据对的批量优化得到更为精确的结果</li>
+<li>目视检查以验证结果</li>
+</ul>
+<p>为了提升优化性能，应该在不同的位置收集数个数据对用于计算。</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><h3 id="安装标定工具"><a href="#安装标定工具" class="headerlink" title="安装标定工具"></a>安装标定工具</h3><p>Lidar-Camera-Calib 的安装过程在另一篇博客中详细说。</p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><ol>
+<li><p>执行命令：<br><code>cd lidar-cam-calibrelated</code></p>
+</li>
+<li><p>执行命令：<br><code>source devel/setup.bash</code></p>
+</li>
+</ol>
+<h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>从以下地址下载示例数据：<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1Ts7FxQVgTtQzPdRLCGz2YTeOHTVSw4Ax/view?pli=1">dataPairs4lidar_cam_calib.zip - Google 云端硬盘</a><br>该文件中包含 4 对图像和点云数据，其中前 3 对用于标定，最后一对用于验证。上文所说的标定工具可以直接用于读取图像和点云。</p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><p>通过 feature_extract.launch 生成 feature yaml 文件（camera_lidar_feature_front.yaml），每次会读取一对数据。也就是说，假如有 10 对图像和点云，要运行 10 次。</p>
+<ol>
+<li>配置 launch/feature_extract.launch 中的参数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pair_num_c</td>
+<td>使用多少对，从 1 开始，使用第 2 个数据对时从 2 开始，以此类推</td>
+</tr>
+<tr>
+<td>pcd_file</td>
+<td>pcd 文件所保存的路径，默认在 data_pairs 文件夹中</td>
+</tr>
+<tr>
+<td>img_file</td>
+<td>img 文件所保存的路径，默认在 data_pairs 文件夹中</td>
+</tr>
+<tr>
+<td>feature_file</td>
+<td>保存特征文件的路径，默认在 results 文件夹中</td>
+</tr>
+<tr>
+<td>filter_x_forward</td>
+<td>沿点云 x 轴查找棋盘的最大前进距离</td>
+</tr>
+<tr>
+<td>filter_x_backward</td>
+<td>沿点云 y 轴查找棋盘的最大后退距离</td>
+</tr>
+<tr>
+<td>filter_y_left</td>
+<td>沿点云 y 轴查找棋盘的最大左距离</td>
+</tr>
+<tr>
+<td>filter_y_right</td>
+<td>沿点云 y 轴查找棋盘的最大右距离</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li><p>在 config/calib.yaml 文件中配置相机的内参</p>
+</li>
+<li><p>执行命令：<br><code>roslaunch autocore_camera_lidar_calib feature_extract.launch</code><br>结果：</p>
+</li>
+</ol>
+<ul>
+<li><p>在“image result”窗口中显示图像，其中棋盘角被标红、标绿，红色标记点的大小表示旋转</p>
+<!-- ![fig 1](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/image_result_1.png) -->
+<p><img src="image_result_1.png" alt="fig 1"></p>
+</li>
+<li><p>在“view”窗口中，通过鼠标左右中按钮的调整，可以显示出点云以及其中被标记的棋盘</p>
+<!-- ![fig 2](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/view_1.png) -->
+<p><img src="view_1.png" alt="fig 2"></p>
+</li>
+<li><p>在 results 文件夹下生成 camera_lidar_feature_front.yaml 文件，其中存储了棋盘角的坐标</p>
+</li>
+</ul>
+<ol>
+<li>改变 feature_extract.launch 中的参数<br>改变 pair_num_c、pcd_file、img_file，重复上一步骤，直至从所有的数据对中获得所有的棋盘角坐标。注意，如果不改变上述参数，再次运行，结果会追加到该 yaml 文件中。</li>
+</ol>
+<ul>
+<li><p>第二对数据的结果</p>
+<!-- ![fig 3](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/image_result_2.png) -->
+<!-- ![fig 4](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/view_2.png) -->
+<p><img src="image_result_2.png" alt="fig 3"><br><img src="view_2.png" alt="fig 4"></p>
+</li>
+<li><p>第三对数据的结果</p>
+<!-- ![fig 5](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/image_result_3.png) -->
+<!-- ![fig 6](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/view_3.png) -->
+<p><img src="image_result_3.png" alt="fig 5"><br><img src="view_3.png" alt="fig 6"></p>
+</li>
+</ul>
+<h3 id="计算旋转和平移"><a href="#计算旋转和平移" class="headerlink" title="计算旋转和平移"></a>计算旋转和平移</h3><p>将所有角点的坐标作为输入，通过 calculate_r_t.launch 生成 calibration yaml 文件（calibration_front.yaml 和 tf_front.yaml）</p>
+<ol>
+<li>配置 launch/calculate_r_t.launch 中的参数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feature_file</td>
+<td>特征文件所保存的路径，默认在 results 文件夹中</td>
+</tr>
+<tr>
+<td>calibration_file</td>
+<td>保存标定文件的路径，默认在 results 文件夹中</td>
+</tr>
+<tr>
+<td>calibration_file_tf</td>
+<td>保存标定 tf 文件的路径，默认在 results 文件夹中</td>
+</tr>
+<tr>
+<td>pairnum</td>
+<td>使用多少对数据，与上一步中生成的 yaml 文件（camera_lidar_feature_front.yaml）中所存储的数据对的数量相一致</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li><p>在 config/calib.yaml 文件中配置相机的内参</p>
+</li>
+<li><p>执行命令：<br><code>roslaunch autocore_camera_lidar_calib calculate_r_t.launch</code></p>
+</li>
+</ol>
+<ul>
+<li>出现窗口：check:project points in cyan, original 3d points in red<!-- ![fig 7](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/check.png) -->
+<img src="check.png" alt="fig 7"><br>可以看到角相互匹配</li>
+<li>标定文件保存在 results 文件夹下，旋转向量和平移向量表示激光雷达与相机的关系</li>
+</ul>
+<h3 id="视觉验证"><a href="#视觉验证" class="headerlink" title="视觉验证"></a>视觉验证</h3><p>检验验证数据集中的点云能否准确地投影到图像上</p>
+<ol>
+<li>配置 visual_validate.launch 中的参数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pcd_file</td>
+<td>pcd文件所保存的路径，默认在 data_pairs 文件夹中</td>
+</tr>
+<tr>
+<td>img_file</td>
+<td>img文件所保存的路径，默认在 data_pairs 文件夹中</td>
+</tr>
+<tr>
+<td>calibration_file</td>
+<td>calibration文件所保存的路径，默认在 results 文件夹中</td>
+</tr>
+<tr>
+<td>filter_x_forward</td>
+<td>沿点云 x 轴查找棋盘的最大前进距离</td>
+</tr>
+<tr>
+<td>filter_x_backward</td>
+<td>沿点云 y 轴查找棋盘的最大后退距离</td>
+</tr>
+<tr>
+<td>filter_y_left</td>
+<td>沿点云 y 轴查找棋盘的最大左距离</td>
+</tr>
+<tr>
+<td>filter_y_right</td>
+<td>沿点云 y 轴查找棋盘的最大右距离</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>执行命令：<br><code>roslaunch autocore_camera_lidar_calib visual_validate.launch</code></li>
+</ol>
+<ul>
+<li>出现窗口：visual_no_ground_points_results<!-- ![fig 8](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/visual_no_ground_points_results.png) -->
+<img src="visual_no_ground_points_results.png" alt="fig 8"><br>其中，黑色的点表示图像中拿着棋盘的人的投影。大多数点匹配到了正确的区域，通过目视检查，转换偏差大约为几个像素。</li>
+<li>关闭上述窗口后，出现窗口：ground_filter<!-- ![fig 9](joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/ground_filter.png) -->
+<img src="ground_filter.png" alt="fig 9"><br>刚刚显示的图像中的黑点即为此处显示的点云的投影</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://autocore.ai/">AutoCore - Intelligent Mobility</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/autocore-ai/calibration_tools/tree/main/lidar-cam-calib-related">calibration_tools/lidar-cam-calib-related at main · autocore-ai/calibration_tools (github.com)</a></li>
+<li>付明磊，张文安，何军强编. 智能驾驶理论与实践系列丛书 无人系统驾控实践 基于Autoware自动驾驶平台[M]. 2022.10.</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_56719965/article/details/138266422">Autoware不同版本的学习及标定工具的使用-CSDN博客</a></li>
+<li>高翔，张涛，刘毅，颜沁睿著. 视觉SLAM十四讲 从理论到实践[M]. 北京：电子工业出版社, 2019.08.</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/147638876">Autoware 工具 CalibrToolKit 标定 Robosense 雷达和 ZED 相机！ - 知乎 (zhihu.com)</a></li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
