@@ -104,7 +104,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-text">基本术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAN"><span class="toc-text">CAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">CAN的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">CAN的组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85CAN%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B%EF%BC%9AReCAN"><span class="toc-text">实际CAN数据示例：ReCAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%9C%BA%E6%99%AF%E3%80%81%E6%94%B6%E9%9B%86%E4%B8%8E%E7%BB%84%E6%88%90"><span class="toc-text">数据采集场景、收集与组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B"><span class="toc-text">数据示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SocketCAN"><span class="toc-text">SocketCAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#can-utils%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">can-utils软件包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-text">基本术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAN"><span class="toc-text">CAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAN%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">CAN的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SocketCAN"><span class="toc-text">SocketCAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#can-utils%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-text">can-utils软件包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
 </div>
     
 </div>
@@ -160,83 +160,69 @@
 <li>容错CAN</li>
 <li>单线CAN</li>
 </ul>
-<h3 id="CAN的组成"><a href="#CAN的组成" class="headerlink" title="CAN的组成"></a>CAN的组成</h3><h2 id="实际CAN数据示例：ReCAN"><a href="#实际CAN数据示例：ReCAN" class="headerlink" title="实际CAN数据示例：ReCAN"></a>实际CAN数据示例：ReCAN</h2><p>ReCAN 是一个开源实际 CAN 数据集。</p>
-<p>ReCAN-Dataset for reverse engineering of Controller Area Network</p>
-<h3 id="数据采集场景、收集与组成"><a href="#数据采集场景、收集与组成" class="headerlink" title="数据采集场景、收集与组成"></a>数据采集场景、收集与组成</h3><p>（1） 数据收集</p>
-<p>OBD - Ⅱ<br>500k 波特率<br>数据格式：CSV文件</p>
-<p>（2） 数据集组成</p>
-<p>原始数据与解码后的数据</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>代号</th>
-<th>车型</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C-1</td>
-<td>阿尔法·罗密欧 Giulia</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>C-2</td>
-<td>欧宝 Corsa</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>T-1</td>
-<td>三菱扶桑 Canter</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>T-2</td>
-<td>五十菱 M55</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>T-3</td>
-<td>比亚乔 Porter Maxi</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>（3） 数据采集场景<br>城市快速路、重复刹车、城市道路和车辆静止</p>
-<h3 id="数据示例"><a href="#数据示例" class="headerlink" title="数据示例"></a>数据示例</h3><p>原始数据示例：fig 1(b)</p>
+<!-- ### CAN的组成 -->
+<!-- ## 实际CAN数据示例：ReCAN
+
+ReCAN 是一个开源实际 CAN 数据集。
+
+ReCAN-Dataset for reverse engineering of Controller Area Network
+
+### 数据采集场景、收集与组成
+
+（1） 数据收集
+
+OBD - Ⅱ
+500k 波特率
+数据格式：CSV文件
+
+（2） 数据集组成
+
+原始数据与解码后的数据
+
+|代号|车型|||
+|-|-|-|-|
+|C-1|阿尔法·罗密欧 Giulia|||
+|C-2|欧宝 Corsa|||
+|T-1|三菱扶桑 Canter|||
+|T-2|五十菱 M55|||
+|T-3|比亚乔 Porter Maxi|||
+
+（3） 数据采集场景
+城市快速路、重复刹车、城市道路和车辆静止
+
+### 数据示例
+原始数据示例：fig 1(b) -->
 <h2 id="SocketCAN"><a href="#SocketCAN" class="headerlink" title="SocketCAN"></a>SocketCAN</h2><h3 id="can-utils软件包"><a href="#can-utils软件包" class="headerlink" title="can-utils软件包"></a>can-utils软件包</h3><ol>
-<li>安装can-utils<br>执行命令：<br><code>sudo apt-get install can-utils</code><br><img src="introduction-to-can/install_can_utils.png" alt="fig 4.1"><!-- ![fig 4.1](can_utils_install.png) --></li>
+<li>安装can-utils<br>执行命令：<br><code>sudo apt-get install can-utils</code><!-- ![fig 4.1](introduction-to-can/install_can_utils.png) -->
+<img src="can_utils_install.png" alt="fig 4.1"></li>
 <li>设置虚拟CAN网络<br>由于缺少实际的设备，在这里使用虚拟 CAN 网络。</li>
 </ol>
 <p>（1）加载 vcan 模块：<code>sudo modprobe vcan</code></p>
-<p>（2）使用<code>dmesg</code>命令显示消息，终端输出的最后一行为：<br><img src="introduction-to-can/load_vcan.jpg" alt="fig 4.2"></p>
+<p>（2）使用<code>dmesg</code>命令显示消息，终端输出的最后一行为：<br><!-- ![fig 4.2](introduction-to-can/load_vcan.jpg) --><br><img src="load_vcan.jpg" alt="fig 4.2"></p>
 <p>（3）使用<code>ip link</code>命令设置接口<br><!-- 设置波特率/比特率（无需为虚拟接口设定） --><br><code>sudo ip link add dev vcan0 type vcan</code><br><code>sudo ip link set up vcan0</code></p>
-<p>（4）使用<code>ifconfig</code>命令确认 vcan0 接口存在：<code>ifconfig vcan0</code><br>终端输出：<br><img src="introduction-to-can/ifconfig.jpg" alt="fig 4.3"><br>Tips: 如果提示<code>Command &#39;ifconfig&#39; not found, but can be installed with</code>…，可以先用<code>which ifconfig</code>检查<code>ifconfig</code>是否已安装。若未安装，使用<code>sudo apt install net-tools</code>进行安装。<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/fzy999999/article/details/134007035">Linux中ifconfig :command not found 找不到命令的解决方法_ifconfig未找到命令-CSDN博客</a></p>
+<p>（4）使用<code>ifconfig</code>命令确认 vcan0 接口存在：<code>ifconfig vcan0</code><br>终端输出：<br><!-- ![fig 4.3](introduction-to-can/ifconfig.jpg) --><br><img src="ifconfig.jpg" alt="fig 4.3"><br>Tips: 如果提示<code>Command &#39;ifconfig&#39; not found, but can be installed with</code>…，可以先用<code>which ifconfig</code>检查<code>ifconfig</code>是否已安装。若未安装，使用<code>sudo apt install net-tools</code>进行安装。<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/fzy999999/article/details/134007035">Linux中ifconfig :command not found 找不到命令的解决方法_ifconfig未找到命令-CSDN博客</a></p>
 <!-- 在固件中实现 SLCAN 协议（使用实际设备时） -->
 <ol>
 <li>安装 can-isotp.ko模块<br>can-isotp.ko 模块是一个 Linux 内核模块，后缀“ko”表示它是在 Linux 等类 Unix 操作系统中可以被加载的内核模块。通过名称可以知道它大概与 ISO-TP 协议有关，实际上它就是在 CAN 上为 ISO-TP 协议提供支持。</li>
 </ol>
 <p>（1） 首先检查 can-isotp 模块是否已经被安装：稳定性得到验证以后（内核版本在 5.10 之后），被移到 Linux 内核的标准分支中。</p>
 <ul>
-<li>执行命令：<code>modinfo can-isotp</code><br><img src="introduction-to-can/modinfo_can_isotp.jpg" alt="fig 4.4"></li>
+<li>执行命令：<code>modinfo can-isotp</code><!-- ![fig 4.4](introduction-to-can/modinfo_can_isotp.jpg) -->
+<img src="modinfo_can_isotp.jpg" alt="fig 4.4"></li>
 </ul>
 <p>（2）安装所需的依赖以及特定版本的 Linux 内核头文件 </p>
 <ul>
-<li><code>sudo apt-get install build-essential linux-headers-$(uname -r)</code><br><img src="introduction-to-can/build_essential_linux_headers.jpg" alt="fig 4.5"></li>
+<li><code>sudo apt-get install build-essential linux-headers-$(uname -r)</code><!-- ![fig 4.5](introduction-to-can/build_essential_linux_headers.jpg) -->
+<img src="build_essential_linux_headers.jpg" alt="fig 4.5"></li>
 </ul>
 <p>（3）下载：<code>git clone https://github.com/hartkopp/can-isotp.git</code></p>
 <p>（4）切换到<code>can-isotp-master</code>目录下进行编译：</p>
 <ul>
 <li><code>cd can-isotp-master</code></li>
-<li><code>make</code><br><img src="introduction-to-can/can_isotp_make.jpg" alt="fig 4.6"></li>
-<li><code>sudo make modules_install</code><br>报错：SSL error<br><img src="introduction-to-can/make_modules_install_ssl_error.jpg" alt="fig 4.7"><ul>
+<li><code>make</code><!-- ![fig 4.6](introduction-to-can/can_isotp_make.jpg) -->
+<img src="can_isotp_make.jpg" alt="fig 4.6"></li>
+<li><code>sudo make modules_install</code><br>报错：SSL error<!-- ![fig 4.7](introduction-to-can/make_modules_install_ssl_error.jpg) -->
+<img src="make_modules_install_ssl_error.jpg" alt="fig 4.7"><ul>
 <li>原因：Boot 模式是 UEFI，且 Secure Boot enabled</li>
 <li>解决：<ul>
 <li>关闭 Secure Boot：选择 UEFI Firmware Settings，进入 Phoenix SecureCore Technology Setup，Security - Secure Boot，将 Enabled 切换为 Disabled，保存并退出</li>
@@ -252,7 +238,7 @@
 </li>
 </ul>
 <p>（5）使用 <code>insmod</code> 命令，将模块插入到内核中：<code>sudo insmod ./net/can/can-isotp.ko</code>，成功以后终端无输出</p>
-<p>（6）使用<code>demesg</code>命令，查看是否有 isotp 协议<br><img src="introduction-to-can/can_isotp_module_verification_failed.jpg" alt="fig 4.8"><br>签名或密钥缺失，暂时未解决</p>
+<p>（6）使用<code>demesg</code>命令，查看是否有 isotp 协议<br><!-- ![fig 4.8](introduction-to-can/can_isotp_module_verification_failed.jpg) --><br><img src="can_isotp_module_verification_failed.jpg" alt="fig 4.8"><br>签名或密钥缺失，暂时未解决</p>
 <p>（7）Secure Boot 改为 Enabled</p>
 <!-- ### SocketCAN编程 -->
 <!-- ### socketcand守护进程 -->
