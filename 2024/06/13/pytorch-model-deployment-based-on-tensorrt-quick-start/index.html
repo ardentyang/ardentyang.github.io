@@ -148,13 +148,15 @@
 </span>
     </div>
     <div class="post-content ">
-        <h2 id="配置-TensorRT-开发环境"><a href="#配置-TensorRT-开发环境" class="headerlink" title="配置 TensorRT 开发环境"></a>配置 TensorRT 开发环境</h2><h3 id="安装需要的软件"><a href="#安装需要的软件" class="headerlink" title="安装需要的软件"></a>安装需要的软件</h3><p>（1）安装 Docker：按照官网教程<br>（2）为了能够在 Docker 中使用 GPU，安装 NVIDIA Container Toolkit：依据 NVIDIA Container Toolkit installation guide<br>（3）安装 VSCode，并为 Docker 的使用安装相关扩展：Docker 和 Dev Containers</p>
+        <h2 id="配置-TensorRT-开发环境"><a href="#配置-TensorRT-开发环境" class="headerlink" title="配置 TensorRT 开发环境"></a>配置 TensorRT 开发环境</h2><h3 id="安装需要的软件"><a href="#安装需要的软件" class="headerlink" title="安装需要的软件"></a>安装需要的软件</h3><p>（1）安装 Docker：按照官网教程</p>
+<p>（2）为了能够在 Docker 中使用 GPU，安装 NVIDIA Container Toolkit：依据 NVIDIA Container Toolkit installation guide</p>
+<p>（3）安装 VSCode，并为 Docker 的使用安装相关扩展：Docker 和 Dev Containers</p>
 <h3 id="编写-Dockerfile-文件"><a href="#编写-Dockerfile-文件" class="headerlink" title="编写 Dockerfile 文件"></a>编写 Dockerfile 文件</h3><p>（1）拉取 image<br>基于 NVIDIA 官方发布的 TensorRT 的 Docker Image：nvcr.io/nvidia/tensorrt:22.03-py3</p>
 <p>（2）备份并替换源</p>
 <p>（3）安装C++开发、OpenCV所需依赖包</p>
 <ul>
-<li>[x] libtbbmalloc2 代替 libtbb2</li>
-<li>[x] libdc1394-dev 代替 libdc1394-22-dev</li>
+<li>libtbbmalloc2 代替 libtbb2</li>
+<li>libdc1394-dev 代替 libdc1394-22-dev</li>
 </ul>
 <p>（4）拉取 opencv 安装包或者手动下载后添加；解压</p>
 <p>（5）编译和安装</p>
@@ -164,9 +166,9 @@
 </ul>
 <p>遇到的问题及解决方法：</p>
 <ul>
-<li>[x] ippicv 无法成功下载：更换下载地址</li>
-<li>[x] 找不到 numpy 库：在 cmake 中指定 Python 的版本</li>
-<li>[x] 关于 generator expression $<COMPILE_LANG_AND_ID:CUDA,NVIDIA>：通过绝对路径使用更高版本的 cmake</li>
+<li>ippicv 无法成功下载：更换下载地址</li>
+<li>找不到 numpy 库：在 cmake 中指定 Python 的版本</li>
+<li>关于 generator expression $<COMPILE_LANG_AND_ID:CUDA,NVIDIA>：通过绝对路径使用更高版本的 cmake</li>
 </ul>
 <h3 id="构建-Docker-image"><a href="#构建-Docker-image" class="headerlink" title="构建 Docker image"></a>构建 Docker image</h3><h3 id="运行-Docker-container"><a href="#运行-Docker-container" class="headerlink" title="运行 Docker container"></a>运行 Docker container</h3><h3 id="在-Docker-container-中构建-C-项目"><a href="#在-Docker-container-中构建-C-项目" class="headerlink" title="在 Docker container 中构建 C++ 项目"></a>在 Docker container 中构建 C++ 项目</h3><p>（1） 新建 CMakeLists.txt 文件，即项目配置文件，写入内容</p>
 <ul>
@@ -204,8 +206,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="调试、编译与链接"><a href="#调试、编译与链接" class="headerlink" title="调试、编译与链接"></a>调试、编译与链接</h3><p>（1）调试：单击调试按钮<br>（2）编译与链接：单击底部任务栏的 build 选项</p>
-<h2 id="导出格式为-TensorRT-所支持的模型文件"><a href="#导出格式为-TensorRT-所支持的模型文件" class="headerlink" title="导出格式为 TensorRT 所支持的模型文件"></a>导出格式为 TensorRT 所支持的模型文件</h2><h3 id="模型文件转换"><a href="#模型文件转换" class="headerlink" title="模型文件转换"></a>模型文件转换</h3><p>（1）.pth 文件 -&gt; TorchScript .pt 文件<br>（2）-&gt; ONNX .onnx 文件<br>可以通过 Netron 进行可视化<br>（3）-&gt; TensorRT .engine 文件<br>（4）加载 .engine 文件，初始化环境<br>（5）开辟显存空间<br>（6）读取输入、推理和输出</p>
+<h3 id="调试、编译与链接"><a href="#调试、编译与链接" class="headerlink" title="调试、编译与链接"></a>调试、编译与链接</h3><p>（1）调试：单击调试按钮</p>
+<p>（2）编译与链接：单击底部任务栏的 build 选项</p>
+<h2 id="导出格式为-TensorRT-所支持的模型文件"><a href="#导出格式为-TensorRT-所支持的模型文件" class="headerlink" title="导出格式为 TensorRT 所支持的模型文件"></a>导出格式为 TensorRT 所支持的模型文件</h2><h3 id="模型文件转换"><a href="#模型文件转换" class="headerlink" title="模型文件转换"></a>模型文件转换</h3><p>（1）.pth 文件 -&gt; TorchScript .pt 文件</p>
+<p>（2）-&gt; ONNX .onnx 文件<br>可以通过 Netron 进行可视化</p>
+<p>（3）-&gt; TensorRT .engine 文件</p>
+<p>（4）加载 .engine 文件，初始化环境</p>
+<p>（5）开辟显存空间</p>
+<p>（6）读取输入、推理和输出</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>刘斯坦作. 计算机前沿技术丛书 PyTorch自动驾驶视觉感知算法实战[M]. 北京：机械工业出版社, 2024.01.</li>
 </ul>
