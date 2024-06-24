@@ -12,7 +12,7 @@
 
     <title>
         
-        Ardent Yang&#39;s blog
+        神经网络中常见层的FLOPS计算 - Ardent Yang&#39;s blog
         
     </title>
 
@@ -69,7 +69,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li  class=active >
+            <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -103,6 +103,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%82%E7%9A%84FLOPS%E8%AE%A1%E7%AE%97"><span class="toc-text">常见层的FLOPS计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="toc-text">全连接层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="toc-text">卷积层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thop%E5%BA%93"><span class="toc-text">thop库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+</div>
+    
 </div>
 
 
@@ -128,157 +132,42 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2024-06-13</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/06/13/pytorch-model-deployment-based-on-tensorrt-quick-start/">
-                <h3>
-                    基于TensorRT的PyTorch模型部署：quick start
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        神经网络中常见层的FLOPS计算
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2024-05-19</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/05/19/a-brief-description-of-the-pinhole-model-of-camera/">
-                <h3>
-                    相机针孔模型简述
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-09-23 07:16:02</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2024-05-17</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/05/17/introduction-to-can/">
-                <h3>
-                    CAN入门
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2024-05-13</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/05/13/installation-of-lidar-camera-calib/">
-                <h3>
-                    Lidar-Camera-Calib的安装
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2024-05-10</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/05/10/installation-of-autoware-ai-in-ubuntu-20-04/">
-                <h3>
-                    记录autoware.ai在Ubuntu 20.04中的安装
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2024-05-08</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2024/05/08/joint-calibration-of-camera-and-lidar-based-on-lidar-camera-calib/">
-                <h3>
-                    基于Lidar-Camera-Calib工具的单目相机和激光雷达的联合标定
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2023-09-23</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2023/09/23/flops-calculation-of-common-layers-in-neural-networks/">
-                <h3>
-                    神经网络中常见层的FLOPS计算
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-08-28</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2022/08/28/an-explanation-of-pytorch-gather/">
-                <h3>
-                    PyTorch中的gather函数
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2021-10-24</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2021/10/24/summary-of-rnns/">
-                <h3>
-                    循环神经网络小结
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2021-09-25</div>
-        <div class="post-info">
-            <a href="http://ardentyang.github.io/2021/09/25/summary-of-cnns/">
-                <h3>
-                    卷积神经网络小结
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    
-    <li class="next">
-        <a href="/page/2/">Older Posts &rarr;</a>
-    </li>
-    
+    <div class="post-content ">
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>FLOPS (Floating-point Operations Per Second)，每秒执行的浮点数运算次数。原本是计算机性能指标。对于神经网络而言，FLOPS可以用来评估网络的计算复杂度。</p>
+<h2 id="常见层的FLOPS计算"><a href="#常见层的FLOPS计算" class="headerlink" title="常见层的FLOPS计算"></a>常见层的FLOPS计算</h2><h3 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h3><p>假设输入是4个神经元，输出是3个神经元。计算一个输出神经元需要经过4次乘法与3次加法，如果考虑加上偏置，一共是4次乘法与4次加法。因此，3个神经元一共需要的FLOPS是</p>
+<script type="math/tex; mode=display">
+不考虑偏置：(4 + (4 - 1)) * 3 \\
+考虑偏置：(4 + 4) * 3</script><p>对于一般化的情况，假设某个全连接层的输入是 $I$ 个神经元，输出是 $O$ 个神经元，则该层的前向传播需要的FLOPS为</p>
+<script type="math/tex; mode=display">
+不考虑偏置：(I + (I - 1)) * O = (2 * I - 1) * O \\
+考虑偏置：(I + I) * O = 2 * I * O</script><h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><h2 id="thop库"><a href="#thop库" class="headerlink" title="thop库"></a>thop库</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41834400/article/details/120283103">深度学习中的FLOPs介绍及计算(注意区分FLOPS)-CSDN博客</a></li>
 </ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
 
     </div>
 </div>
@@ -333,7 +222,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = ""
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
